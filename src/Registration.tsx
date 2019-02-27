@@ -37,7 +37,7 @@ const Registration = (props: RegistrationProps) => {
                     <Alert className="mt-3" color="warning">
                         Warning: This credential has not been validated on the server. In an actual WebAuthn application, new credentials <b>must</b>{' '}
                         be validated for critical security reasons. See the{' '}
-                        <a target="_blank" href="https://github.io/subyraman/redux-webauthn-server-example">Redux-Webauthn Server Example</a> for an
+                        <a target="_blank" href="https://github.com/subyraman/redux-webauthn/tree/master/demo/redux-webauthn-react-typescript-example">Redux-Webauthn Server Example</a> for an
                         example.
                     </Alert>
                 </div>
@@ -47,11 +47,11 @@ const Registration = (props: RegistrationProps) => {
 }
 
 const credentialOptions: PublicKeyCredentialCreationOptions = {
-    challenge: new Uint8Array(32).buffer,
+    challenge: window.crypto.getRandomValues(new Uint8Array(32)),
     pubKeyCredParams: [{alg: -7, 'type': 'public-key'}],
     rp: {
-        id: 'localhost',
-        name: "localhost"
+        id: 'subyraman.github.io',
+        name: "subyraman.github.io"
     },
     user: {
         displayName: 'displayName',

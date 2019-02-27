@@ -18,7 +18,7 @@ function mapDispatchToProps(dispatch: Dispatch<WebauthnActionTypes>) {
             const idAsArrayBuffer = webauthnB64ToArrayBuffer(id);
 
             const publicKeyRequestOptions: PublicKeyCredentialRequestOptions = {
-              challenge: new Uint8Array(32).buffer,
+              challenge: window.crypto.getRandomValues(new Uint8Array(32)),
               allowCredentials: [
                 {id: idAsArrayBuffer, type: 'public-key'},
               ]
@@ -57,7 +57,7 @@ const Authentication = (props: AuthenticationProps) => {
                     <Alert className="mt-3" color="warning">
                         Warning: This authentication assertion has not been validated on the server. In an actual WebAuthn application, assertions <b>must</b>{' '}
                         be validated for critical security reasons. See the{' '}
-                        <a target="_blank" href="https://github.io/subyraman/redux-webauthn-server-example">Redux-Webauthn Server Example</a> for an
+                        <a target="_blank" href="https://github.com/subyraman/redux-webauthn/tree/master/demo/redux-webauthn-react-typescript-example">Redux-Webauthn Server Example</a> for an
                         example.
                     </Alert>
                 </div>
